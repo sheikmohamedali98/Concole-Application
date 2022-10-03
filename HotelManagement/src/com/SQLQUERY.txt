@@ -1,0 +1,76 @@
+ FOREIGN KEY (customer_id) REFERENCES Customer(customer_id)
+foreign key(customer_id) references Customer(customer_id)
+create database hotel_management;
+use hotel_management;
+create table Menu(
+item_id int primary key,
+item_name varchar(50) not null,
+item_price double
+);
+
+create table Customer(
+customer_id int primary key,
+customer_name varchar(50) not null,
+customer_phoneNumber int unique);
+
+create table Bill(
+bill_id int primary key,
+order_id int ,
+total_amount double,
+customer_id int
+);
+
+CREATE TABLE Orders (
+    OrderID int primary key,
+     item_id int ,
+   item_name varchar(50),
+   quantity int,
+  customer_id int ,
+    item_price double,
+    paid boolean
+);
+
+alter table Orders  modify column  OrderID int  auto_increment;
+
+insert into Menu values('1','idly','7');
+insert into Menu values
+('2','parrota','15'),('3','Dosa','40');
+
+insert into Orders( item_id , item_name,quantity,customer_id,item_price, paid) values('2','parrota','4','1','60','0');
+select * from orders;
+select *from Bill;
+select sum(item_price) from Orders group by customer_id having customer_id = '1'
+alter table Customer  modify column  customer_id int  auto_increment;
+
+
+select sum(item_price) from Orders group by customer_id having customer_id = '1'
+
+
+private static final String ADD_MENU = "INSERT INTO  Menu (item_id,item_name,item_price) values (?,?,?)";
+	private static final String UPDATE_MENU = "UPDATE Menu SET item_name= ?,item_price = ? WHERE item_id = ?";
+	private static final String DELETE_MENU = "DELETE FROM Menu WHERE item_id = ?";
+	private static final String FIND_MENU = "SELECT * FROM Menu WHERE item_id = ?";
+	private static final String DISPLAY_MENU = "SELECT * FROM Menu";
+
+
+
+	private static final String ADD_CUSTOMER = "INSERT INTO  Customer (customer_id,customer_name,customer_phoneNumber) values (?,?,?)";
+	private static final String UPDATE_CUSTOMER = "UPDATE Customer SET customer_name = ?,customer_phoneNumber=? WHERE customer_id = ?";
+	private static final String DELETE_CUSTOMER = "DELETE FROM Customer WHERE customer_id = ?";
+	private static final String FIND_CUSTOMER = "SELECT * FROM Customer WHERE customer_id = ?";
+	private static final String DISPLAY_CUSTOMER = "SELECT * FROM Customer";
+	private static final String LOGIN_CUSTOMER = "SELECT customer_phoneNumber FROM customer";
+
+
+private static final String ADD_ORDER = "INSERT INTO Orders (item_id,quantity,item_price,customer_id,item_name) VALUES (?,?,?,?,?)";
+	private static final String DELETE_ORDER = "DELETE FROM Orders WHERE order_id = ?";
+	private static final String PRICE_DETAILS = "SELECT item_price FROM Menu WHERE  item_id=?";
+	private static final String CUSTOMER_ID = "SELECT customer_id FROM Customer WHERE customer_phoneNumber = ?";
+	private static final String ITEM_DETAILS = "SELECT item_name FROM Menu WHERE  item_id=?";
+	private static final String ORDER_DETAILS = "SELECT item_id,item_name,quantity,item_price FROM Orders WHERE customer_id = ?";
+
+
+
+
+
+
